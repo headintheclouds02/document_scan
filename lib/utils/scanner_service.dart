@@ -4,14 +4,17 @@ class CunningScannerService {
   Future<List<String>?> scanDocuments() async {
     try {
       final images = await CunningDocumentScanner.getPictures(
-        isGalleryImportAllowed: true,
+        isGalleryImportAllowed: false,
         iosScannerOptions: IosScannerOptions(
           imageFormat: IosImageFormat.jpg,
           jpgCompressionQuality: 0.5,
         ),
       );
+      print("SCAN RESULT RAW: $images");
       return images;
-    } catch (e) {
+    } catch (e, s) {
+      print("scanner error: $e");
+      print(s);
       return null;
     }
   }

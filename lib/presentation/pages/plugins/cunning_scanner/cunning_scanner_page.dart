@@ -1,6 +1,7 @@
 import 'package:document_scanner_project/utils/scanner_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CunningScannerPage extends StatefulWidget {
   const CunningScannerPage({super.key});
@@ -13,13 +14,36 @@ class _CunningScannerPageState extends State<CunningScannerPage> {
   final CunningScannerService _scannerService = CunningScannerService();
 
   Future<void> _startScan() async {
+    print("SCAN STARTED");
+
+    final status = await Permission.camera.status;
+    print("Camera status before request: $status");
+
+    final result = await Permission.camera.request();
+    print("Camera status after request: $result");
+
+    if (result.isPermanentlyDenied) {
+      openAppSettings();
+      return;
+    }
+
+    if (!status.isGranted) {
+      print("Camera permission denied");
+      _showNoScanMessage();
+      return;
+    }
+
     final images = await _scannerService.scanDocuments();
+
+    print("SCAN RESULT: $images");
+
     if (!mounted) return;
 
     if (images == null || images.isEmpty) {
       _showNoScanMessage();
       return;
     }
+
     _goToPreview(images);
   }
 
