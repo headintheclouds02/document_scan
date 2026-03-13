@@ -34,11 +34,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.pink,
             ),
             SizedBox(height: 20),
-            //ScanButton(
-            //  text: 'Flutter document scanner',
-            //  onPressed: () => context.push("/flutterScanner"),
-            //  color: Colors.pinkAccent,
-            //),
+            ScanButton(
+              text: 'Custom document scanner',
+              onPressed: () => context.push("/customScanner"),
+              color: Colors.pinkAccent,
+            ),
           ],
         ),
       ),

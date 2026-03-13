@@ -1,4 +1,4 @@
-import 'package:document_scanner_project/utils/scanner_service.dart';
+import 'package:document_scanner_project/utils/cunning_scanner_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';

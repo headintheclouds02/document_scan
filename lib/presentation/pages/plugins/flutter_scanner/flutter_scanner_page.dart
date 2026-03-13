@@ -8,6 +8,7 @@ class FlutterScannerPage extends StatefulWidget {
 }
 
 class _FlutterScannerPageState extends State<FlutterScannerPage> {
+
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
