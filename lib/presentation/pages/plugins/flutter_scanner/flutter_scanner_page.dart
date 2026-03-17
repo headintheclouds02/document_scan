@@ -20,9 +20,11 @@ class _FlutterScannerPageState extends State<FlutterScannerPage> {
 
 
       if (result != null && context.mounted) {
+        final pdfPath = result['pdfUri'];
+
         final savedPdf = await context.push<String>(
           '/flutterPreviewPage',
-          extra: result,
+          extra: pdfPath,
         );
 
         if (savedPdf != null) {
