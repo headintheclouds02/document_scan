@@ -4,7 +4,7 @@ class CunningScannerService {
   Future<List<String>?> scanDocuments() async {
     try {
       final images = await CunningDocumentScanner.getPictures(
-        isGalleryImportAllowed: false,
+        isGalleryImportAllowed: true,
         iosScannerOptions: IosScannerOptions(
           imageFormat: IosImageFormat.jpg,
           jpgCompressionQuality: 0.5,

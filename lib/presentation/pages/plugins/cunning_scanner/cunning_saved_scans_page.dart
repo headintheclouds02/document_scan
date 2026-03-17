@@ -10,8 +10,10 @@ class CunningSavedScansPage extends StatelessWidget {
     final docs = ScanStorageService().documents;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Le mie scansioni"),
+        title: Text("My scans"),
+        backgroundColor: Colors.white,
       ),
       body: docs.isEmpty
           ? _buildEmptyState()
@@ -31,7 +33,7 @@ class CunningSavedScansPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'Nessuna scansione salvata',
+            'No scans saved',
             style: TextStyle(
               fontSize: 18,
               color: Colors.grey,
@@ -51,9 +53,10 @@ class CunningSavedScansPage extends StatelessWidget {
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: ListTile(
+            tileColor: Colors.white,
             leading: Icon(
               Icons.picture_as_pdf,
-              color: Colors.pinkAccent,
+              color: Colors.redAccent,
               size: 40,
             ),
             title: Text(doc.name, style: TextStyle(fontSize: 14),),

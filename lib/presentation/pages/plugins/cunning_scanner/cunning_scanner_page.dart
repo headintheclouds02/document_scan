@@ -53,9 +53,7 @@ class _CunningScannerPageState extends State<CunningScannerPage> {
 
   void _showNoScanMessage() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Nessuna scansione effettuata'),
-      ),
+      const SnackBar(content: Text('Nessuna scansione effettuata')),
     );
   }
 
@@ -66,19 +64,27 @@ class _CunningScannerPageState extends State<CunningScannerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Cunning Scanner")),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("cunning_document_scanner"),
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Column(
           children: [
             Text(
               'Cunning Document Scanner is a Flutter-based document scanner application that enables you to capture images of paper documents and convert them into digital files effortlessly. This application is designed to run on Android and iOS devices with minimum API levels of 21 and 13, respectively.',
             ),
-            SizedBox(height: 24,),
+            SizedBox(height: 24),
             ElevatedButton.icon(
               icon: Icon(Icons.document_scanner),
               label: Text("Start Scan"),
               onPressed: _startScan,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+              ),
             ),
           ],
         ),
@@ -86,6 +92,8 @@ class _CunningScannerPageState extends State<CunningScannerPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: _openSavedScans,
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
         child: Icon(Icons.folder),
       ),
     );

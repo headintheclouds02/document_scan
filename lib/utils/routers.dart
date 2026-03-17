@@ -1,12 +1,12 @@
 import 'package:camera/camera.dart';
-import 'package:document_scanner_project/presentation/pages/custom/custom_scanner/camera_page.dart';
-import 'package:document_scanner_project/presentation/pages/custom/custom_scanner/custom_preview_page.dart';
-import 'package:document_scanner_project/presentation/pages/custom/custom_scanner/custom_scanner_page.dart';
 import 'package:document_scanner_project/presentation/pages/home_page/home_page.dart';
 import 'package:document_scanner_project/presentation/pages/plugins/cunning_scanner/cunning_preview_page.dart';
 import 'package:document_scanner_project/presentation/pages/plugins/cunning_scanner/cunning_saved_scans_page.dart';
 import 'package:document_scanner_project/presentation/pages/plugins/cunning_scanner/cunning_scanner_page.dart';
+import 'package:document_scanner_project/presentation/pages/plugins/flutter_scanner/flutter_scanner_page.dart';
 import 'package:go_router/go_router.dart';
+
+import '../presentation/pages/plugins/flutter_scanner/flutter_preview_page.dart';
 
 class AppRouter {
   final List<CameraDescription> cameras;
@@ -40,31 +40,21 @@ class AppRouter {
       GoRoute(
         path: '/cunningSavedScans',
         name: '/cunningSavedScans',
-        builder: (context, state) => CunningSavedScansPage(),
+        builder: (context, state) => CunningSavedScansPage()
       ),
 
       GoRoute(
-        path: '/customScanner',
-        name: '/customScanner',
-        builder: (context, state) => CustomScannerPage(cameras: cameras),
+        path: '/flutterDocScanner',
+        name: '/flutterDocScanner',
+        builder: (context, state) => FlutterScannerPage(),
       ),
 
       GoRoute(
-        path: '/camera',
-        name: '/camera',
-        builder: (context, state) => CameraPage(cameras: cameras),
-      ),
-
-      GoRoute(
-        path: '/previewCustom',
-        name: '/previewCustom',
+        path: '/flutterPreviewPage',
+        name: '/flutterPreviewPage',
         builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
-
-          return CustomPreviewPage(
-            imagePath: extra['imagePath'],
-            onSave: extra['onSave'],
-          );
+          final pdfPath = state.extra as String;
+          return FlutterPreviewPage(pdfPath: pdfPath);
         },
       ),
     ],

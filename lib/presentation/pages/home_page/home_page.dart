@@ -13,31 +13,37 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Document Scanner Plugins Demo'),
-        backgroundColor: Colors.pink.shade50,
+        backgroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 24),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 20,
           children: [
             Text(
-              'Questo progetto dimostra diversi plugin Flutter per la scansione di documenti.',
+              'This project shows two open source plugins, cunning_document_scanner and flutter_doc_scanner_local, which has similar behaviour',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 40),
+
+            Text('Try cunning_document_scanner here'),
             ScanButton(
               text: 'Cunning document scanner',
               onPressed: () => context.push("/cunningScanner"),
-              color: Colors.pink,
+              color: Colors.red,
             ),
             SizedBox(height: 20),
+            Text('Try flutter_doc_scanner_local here'),
             ScanButton(
-              text: 'Custom document scanner',
-              onPressed: () => context.push("/customScanner"),
-              color: Colors.pinkAccent,
+              text: 'flutter doc scanner',
+              onPressed: () => context.push("/flutterDocScanner"),
+              color: Colors.redAccent,
             ),
           ],
         ),

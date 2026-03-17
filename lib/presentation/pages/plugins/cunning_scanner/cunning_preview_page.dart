@@ -85,12 +85,24 @@ class _CunningPreviewPageState extends State<CunningPreviewPage> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: FractionallySizedBox(
-              heightFactor: 0.9,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.file(
-                  File(widget.images[index]),
-                  fit: BoxFit.contain,
+              heightFactor: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.file(
+                    File(widget.images[index]),
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
@@ -103,22 +115,30 @@ class _CunningPreviewPageState extends State<CunningPreviewPage> {
   Widget _buildBottomButtons() {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         child: Row(
           children: [
             Expanded(
               child: ElevatedButton.icon(
                 onPressed: _exportPdf,
-                icon: const Icon(Icons.download),
-                label: const Text("Salva PDF nel dispositivo"),
+                icon: Icon(Icons.download),
+                label: Text('Save PDf in device memory'),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red.shade300,
+                    foregroundColor: Colors.white
+                ),
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12),
             Expanded(
               child: ElevatedButton.icon(
                 onPressed: _saveInAppScans,
-                icon: const Icon(Icons.folder),
-                label: const Text("Salva nelle scansioni"),
+                icon: Icon(Icons.folder),
+                label: Text('Save in scans'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white
+                ),
               ),
             ),
           ],
@@ -130,17 +150,19 @@ class _CunningPreviewPageState extends State<CunningPreviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Preview"),
+        title: Text("cunning_document_scanner Preview"),
+        backgroundColor: Colors.white,
       ),
       body: Column(
         children: [
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           _buildPreviewList(),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           Text(
-            "${widget.images.length} pagine",
-            style: const TextStyle(
+            "${widget.images.length} pages",
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
