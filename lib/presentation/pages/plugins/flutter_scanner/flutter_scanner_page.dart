@@ -15,14 +15,14 @@ class _FlutterScannerPageState extends State<FlutterScannerPage> {
 
   Future<void> scanDocument() async {
     try {
-      final PdfScanResult? result = await FlutterDocScanner()
+      final result = await FlutterDocScanner()
           .getScannedDocumentAsPdf(page: 10);
 
 
       if (result != null && context.mounted) {
         final savedPdf = await context.push<String>(
           '/flutterPreviewPage',
-          extra: result.pdfUri,
+          extra: result,
         );
 
         if (savedPdf != null) {
